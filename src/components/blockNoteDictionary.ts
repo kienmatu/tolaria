@@ -1,11 +1,43 @@
-import * as blockNoteLocales from '@blocknote/core/locales'
+import {
+  de,
+  en,
+  es,
+  fr,
+  it,
+  ja,
+  ko,
+  pl,
+  pt,
+  ru,
+  uk,
+  vi,
+  zh,
+  zhTW,
+} from '@blocknote/core/locales'
 import {
   locales as multiColumnLocales,
   type MultiColumnDictionary,
 } from '@blocknote/xl-multi-column'
 import type { AppLocale } from '../lib/i18n'
 
-type BlockNoteLocaleKey = keyof typeof blockNoteLocales
+const knownBlockNoteLocales = {
+  de,
+  en,
+  es,
+  fr,
+  it,
+  ja,
+  ko,
+  pl,
+  pt,
+  ru,
+  uk,
+  vi,
+  zh,
+  zhTW,
+}
+
+type BlockNoteLocaleKey = keyof typeof knownBlockNoteLocales
 type MultiColumnLocaleKey = keyof typeof multiColumnLocales
 
 const BLOCKNOTE_LOCALE_BY_APP_LOCALE = {
@@ -55,7 +87,8 @@ const MULTI_COLUMN_LOCALE_BY_APP_LOCALE = {
 } satisfies Record<AppLocale, MultiColumnLocaleKey>
 
 export function blockNoteDictionaryForLocale(locale: AppLocale) {
-  const blockNoteLocale = blockNoteLocales[BLOCKNOTE_LOCALE_BY_APP_LOCALE[locale]]
+  const blockNoteLocale =
+    knownBlockNoteLocales[BLOCKNOTE_LOCALE_BY_APP_LOCALE[locale]]
   const multiColumnLocale = multiColumnLocales[
     MULTI_COLUMN_LOCALE_BY_APP_LOCALE[locale]
   ] as MultiColumnDictionary
